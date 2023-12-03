@@ -33,26 +33,6 @@ const productSchema = new mongoose.Schema({
 // Создание модели на основе схемы
 const Product = mongoose.model("Product", productSchema);
 
-// Добавление нескольких товаров при запуске программы
-// const seedProducts = [
-//   {
-//     _id: ObjectId("656b8329eb86ecb5d065c8fb"),
-//     name: "Пример товара 1",
-//     category: "Пример категории 1",
-//     price: 10,
-//   },
-//   { name: "Пример товара 2", category: "Пример категории 2", price: 20 },
-//   { name: "Пример товара 3", category: "Пример категории 1", price: 15 },
-// ];
-
-// Product.insertMany(seedProducts)
-//   .then((products) => {
-//     console.log("Начальные товары успешно добавлены в коллекцию:", products);
-//   })
-//   .catch((error) => {
-//     console.error("Ошибка при добавлении начальных товаров:", error);
-//   });
-
 // Получение списка всех товаров
 app.get("/api/products", async (req, res) => {
   try {
