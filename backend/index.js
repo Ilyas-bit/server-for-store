@@ -7,14 +7,14 @@ const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-// Подключение к MongoDB Atlas
-mongoose.connect(
-  "mongodb+srv://qazwsxedc21012003:AJqsd5jyRdMuBzif@cluster0.lb9szyj.mongodb.net/store?retryWrites=true&w=majority",
-  {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-  }
-);
+// Подключение к MongoDB Atlas (используем переменную окружения для строки подключения)
+const mongoURI =
+  process.env.MONGO_URI ||
+  "mongodb+srv://qazwsxedc21012003:AJqsd5jyRdMuBzif@cluster0.lb9szyj.mongodb.net/store?retryWrites=true&w=majority";
+mongoose.connect(mongoURI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
 
 const db = mongoose.connection;
 
