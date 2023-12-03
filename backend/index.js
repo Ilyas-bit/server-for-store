@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
@@ -44,6 +44,18 @@ app.get("/api/products", async (req, res) => {
   }
 });
 
-app.listen(port, () => {
-  console.log(`Сервер запущен на порту ${port}`);
+// Добавление нового товара
+app.post("/api/products", async (req, res) => {
+  try {
+    const newProduct = new Product(req.body);
+    const savedProduct = await newProduct.save();
+    res.status(201).json(savedProduct);
+  } catch (error) {
+    console.error(error);
+    res.status(500).send("Ошибка сервера");
+  }
+});
+
+app.listen(PORT, () => {
+  console.log(`Сервер запущен на порту ${PORT}`);
 });
